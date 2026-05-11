@@ -29,12 +29,14 @@ class NavBar extends StatelessWidget {
               ],
             )
           else
-            IconButton(
-              icon: const Icon(Icons.menu, color: Colors.white),
-              onPressed: () {
-                // TODO: Open mobile drawer
-              },
-            ),
+            Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(Icons.menu, color: Colors.white),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              ),
+            )
         ],
       ),
     );
