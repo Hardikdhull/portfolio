@@ -7,6 +7,7 @@ import 'src/shared/mobile_drawer.dart';
 import 'src/features/hero/hero_section.dart';
 import 'src/features/projects/project_section.dart';
 import 'src/features/experiance/experiance_section.dart';
+import 'src/features/contact/contact_section.dart';
 
 void main() {
   runApp(const PortfolioApp());
@@ -37,6 +38,7 @@ class _PortfolioHomeState extends State<PortfolioHome> {
   // 1. Create keys for each section
   final GlobalKey _projectsKey = GlobalKey();
   final GlobalKey _experienceKey = GlobalKey();
+  final GlobalKey _contactKey = GlobalKey(); // Added Contact Key
 
   // 2. The scroll function
   void _scrollTo(GlobalKey key) {
@@ -61,6 +63,10 @@ class _PortfolioHomeState extends State<PortfolioHome> {
           Navigator.pop(context);
           _scrollTo(_experienceKey);
         },
+        onContactTap: () {
+          Navigator.pop(context);
+          _scrollTo(_contactKey);
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -68,14 +74,13 @@ class _PortfolioHomeState extends State<PortfolioHome> {
             NavBar(
               onProjectsTap: () => _scrollTo(_projectsKey),
               onExperienceTap: () => _scrollTo(_experienceKey),
+              onContactTap: () => _scrollTo(_contactKey),
             ),
 
-            // The Hero Section
             HeroSection(
               onViewWorkTap: () => _scrollTo(_projectsKey),
             ),
 
-            // Wrap sections with their respective keys
             SizedBox(
               key: _projectsKey,
               child: const ProjectsSection(),
@@ -84,7 +89,10 @@ class _PortfolioHomeState extends State<PortfolioHome> {
               key: _experienceKey,
               child: const ExperienceSection(),
             ),
-            const SizedBox(height: 100), // Bottom padding
+            SizedBox(
+              key: _contactKey,
+              child: const ContactSection(),
+            ),
           ],
         ),
       ),

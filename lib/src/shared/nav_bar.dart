@@ -4,11 +4,13 @@ import '../utils/responsive.dart';
 class NavBar extends StatelessWidget {
   final VoidCallback onProjectsTap;
   final VoidCallback onExperienceTap;
+  final VoidCallback onContactTap;
 
   const NavBar({
     super.key,
     required this.onProjectsTap,
     required this.onExperienceTap,
+    required this.onContactTap,
   });
 
   @override
@@ -18,7 +20,6 @@ class NavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Logo
           const Text(
             "<HD/>",
             style: TextStyle(
@@ -27,14 +28,12 @@ class NavBar extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-
-          // Responsive Links
           if (Responsive.isDesktop(context))
             Row(
               children: [
                 _NavBarItem(title: "Projects", onTap: onProjectsTap),
                 _NavBarItem(title: "Experience", onTap: onExperienceTap),
-                _NavBarItem(title: "Contact", onTap: () {}), // Add contact logic later
+                _NavBarItem(title: "Contact", onTap: onContactTap), // Wired up
               ],
             )
           else

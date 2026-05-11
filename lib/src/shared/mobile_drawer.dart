@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class MobileDrawer extends StatelessWidget {
   final VoidCallback onProjectsTap;
   final VoidCallback onExperienceTap;
+  final VoidCallback onContactTap;
 
   const MobileDrawer({
     super.key,
     required this.onProjectsTap,
     required this.onExperienceTap,
+    required this.onContactTap,
   });
 
   @override
@@ -30,10 +32,7 @@ class MobileDrawer extends StatelessWidget {
           ),
           _DrawerTile(title: "Projects", onTap: onProjectsTap),
           _DrawerTile(title: "Experience", onTap: onExperienceTap),
-          _DrawerTile(
-            title: "Contact",
-            onTap: () => Navigator.pop(context), // Just closes the drawer for now
-          ),
+          _DrawerTile(title: "Contact", onTap: onContactTap), // Wired up
         ],
       ),
     );
