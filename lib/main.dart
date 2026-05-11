@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'src/constants/theam.dart';
+import 'package:hardik_portfolio/src/constants/theam.dart';
+import 'package:hardik_portfolio/src/features/experiance/experiance_section.dart';
+import 'package:hardik_portfolio/src/features/projects/project_section.dart';
 import 'src/shared/nav_bar.dart';
+import 'src/shared/mobile_drawer.dart';
 import 'src/features/hero/hero_section.dart';
 import 'src/features/projects/project_section.dart';
+import 'src/features/experiance/experiance_section.dart';
 
 void main() {
   runApp(const PortfolioApp());
@@ -22,18 +26,65 @@ class PortfolioApp extends StatelessWidget {
   }
 }
 
-class PortfolioHome extends StatelessWidget {
+class PortfolioHome extends StatefulWidget {
   const PortfolioHome({super.key});
+
+  @override
+  State<PortfolioHome> createState() => _PortfolioHomeState();
+}
+
+class _PortfolioHomeState extends State<PortfolioHome> {
+  // 1. Create keys for each section
+  final GlobalKey _projectsKey = GlobalKey();
+  final GlobalKey _experienceKey = GlobalKey();
+
+  // 2. The scroll function
+  void _scrollTo(GlobalKey key) {
+    if (key.currentContext != null) {
+      Scrollable.ensureVisible(
+        key.currentContext!,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOutCubic,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MobileDrawer(
+        onProjectsTap: () {
+          Navigator.pop(context);
+          _scrollTo(_projectsKey);
+        },
+        onExperienceTap: () {
+          Navigator.pop(context);
+          _scrollTo(_experienceKey);
+        },
+      ),
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            NavBar(),
-            HeroSection(),
-            ProjectsSection(),
+          children: [
+            NavBar(
+              onProjectsTap: () => _scrollTo(_projectsKey),
+              onExperienceTap: () => _scrollTo(_experienceKey),
+            ),
+
+            // The Hero Section
+            HeroSection(
+              onViewWorkTap: () => _scrollTo(_projectsKey),
+            ),
+
+            // Wrap sections with their respective keys
+            SizedBox(
+              key: _projectsKey,
+              child: const ProjectsSection(),
+            ),
+            SizedBox(
+              key: _experienceKey,
+              child: const ExperienceSection(),
+            ),
+            const SizedBox(height: 100), // Bottom padding
           ],
         ),
       ),

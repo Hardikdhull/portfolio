@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import '../utils/responsive.dart';
 
 class NavBar extends StatelessWidget {
-  const NavBar({super.key});
+  final VoidCallback onProjectsTap;
+  final VoidCallback onExperienceTap;
+
+  const NavBar({
+    super.key,
+    required this.onProjectsTap,
+    required this.onExperienceTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +18,7 @@ class NavBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // Logo
           const Text(
             "<HD/>",
             style: TextStyle(
@@ -20,12 +28,13 @@ class NavBar extends StatelessWidget {
             ),
           ),
 
+          // Responsive Links
           if (Responsive.isDesktop(context))
             Row(
               children: [
-                _NavBarItem(title: "Experience", onTap: () {}),
-                _NavBarItem(title: "Projects", onTap: () {}),
-                _NavBarItem(title: "Contact", onTap: () {}),
+                _NavBarItem(title: "Projects", onTap: onProjectsTap),
+                _NavBarItem(title: "Experience", onTap: onExperienceTap),
+                _NavBarItem(title: "Contact", onTap: () {}), // Add contact logic later
               ],
             )
           else
@@ -36,7 +45,7 @@ class NavBar extends StatelessWidget {
                   Scaffold.of(context).openDrawer();
                 },
               ),
-            )
+            ),
         ],
       ),
     );

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final VoidCallback onViewWorkTap;
+
+  const HeroSection({
+    super.key,
+    required this.onViewWorkTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +26,17 @@ class HeroSection extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           const Text(
-            "I build scalable systems and production-grade mobile applications, "
+            "I build scalable systems and production-grade mobile applications, \n"
                 "bridging the gap between complex code and user-centric design.",
             style: TextStyle(fontSize: 18, color: Colors.grey),
           ),
           const SizedBox(height: 40),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: onViewWorkTap,
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 20),
+              textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             child: const Text("View My Work"),
           ),
         ],

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MobileDrawer extends StatelessWidget {
-  const MobileDrawer({super.key});
+  final VoidCallback onProjectsTap;
+  final VoidCallback onExperienceTap;
+
+  const MobileDrawer({
+    super.key,
+    required this.onProjectsTap,
+    required this.onExperienceTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +20,20 @@ class MobileDrawer extends StatelessWidget {
             child: Center(
               child: Text(
                 "<HD/>",
-                style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
-          _DrawerTile(title: "Experience", onTap: () => Navigator.pop(context)),
-          _DrawerTile(title: "Projects", onTap: () => Navigator.pop(context)),
-          _DrawerTile(title: "Contact", onTap: () => Navigator.pop(context)),
+          _DrawerTile(title: "Projects", onTap: onProjectsTap),
+          _DrawerTile(title: "Experience", onTap: onExperienceTap),
+          _DrawerTile(
+            title: "Contact",
+            onTap: () => Navigator.pop(context), // Just closes the drawer for now
+          ),
         ],
       ),
     );
