@@ -35,12 +35,10 @@ class PortfolioHome extends StatefulWidget {
 }
 
 class _PortfolioHomeState extends State<PortfolioHome> {
-  // 1. Create keys for each section
   final GlobalKey _projectsKey = GlobalKey();
   final GlobalKey _experienceKey = GlobalKey();
-  final GlobalKey _contactKey = GlobalKey(); // Added Contact Key
+  final GlobalKey _contactKey = GlobalKey();
 
-  // 2. The scroll function
   void _scrollTo(GlobalKey key) {
     if (key.currentContext != null) {
       Scrollable.ensureVisible(

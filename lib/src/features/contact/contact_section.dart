@@ -16,7 +16,7 @@ class ContactSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
-      color: Theme.of(context).colorScheme.surface, // Slightly different background
+      color: Theme.of(context).colorScheme.surface,
       child: Column(
         children: [
           Text(
@@ -32,14 +32,13 @@ class ContactSection extends StatelessWidget {
           ),
           const SizedBox(height: 40),
 
-          // Action Buttons
           Wrap(
             spacing: 20,
             runSpacing: 20,
             alignment: WrapAlignment.center,
             children: [
               ElevatedButton.icon(
-                onPressed: () => _launchUrl('mailto:your.email@example.com'), // UPDATE THIS
+                onPressed: () => _launchUrl('mailto:hardikdhull8022@gmail.com'),
                 icon: const Icon(Icons.email),
                 label: const Text("Email Me"),
                 style: ElevatedButton.styleFrom(
@@ -47,7 +46,7 @@ class ContactSection extends StatelessWidget {
                 ),
               ),
               OutlinedButton.icon(
-                onPressed: () => _launchUrl('https://github.com/yourusername'), // UPDATE THIS
+                onPressed: () => _launchUrl('https://github.com/Hardikdhull'),
                 icon: const Icon(Icons.code),
                 label: const Text("GitHub"),
                 style: OutlinedButton.styleFrom(
@@ -57,7 +56,7 @@ class ContactSection extends StatelessWidget {
                 ),
               ),
               OutlinedButton.icon(
-                onPressed: () => _launchUrl('https://linkedin.com/in/yourusername'), // UPDATE THIS
+                onPressed: () => _launchUrl('https://www.linkedin.com/in/hardik-dhull-7b7313295/'),
                 icon: const Icon(Icons.work),
                 label: const Text("LinkedIn"),
                 style: OutlinedButton.styleFrom(
@@ -70,7 +69,6 @@ class ContactSection extends StatelessWidget {
           ),
           const SizedBox(height: 80),
 
-          // Simple Footer
           Text(
             "© ${DateTime.now().year} Hardik Dhull. Built with Flutter Web.",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white54),
